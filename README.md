@@ -4,7 +4,7 @@
 
 ---
 
-# 🎓 The Complete MultiModal RAG — End-to-End GenAI Pipeline Course
+# 🎓 The Complete MultiModal RAG — End-to-End GenAI Pipeline Course 
 
 **By: Abhi Yadav** (Instructor)
 
