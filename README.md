@@ -3,7 +3,7 @@
 
 # 🎓 The Complete MultiModal RAG — End-to-End GenAI Pipeline Course
 
-**By: Sunny** (Instructor)
+**By: Abhi Yadav** (Instructor)
 
 > **Tagline:** Learn Retrieval-Augmented Generation (RAG) for text + vision + realtime streams — from scratch to advanced production pipelines. Build real multimodal RAG apps using LanceDB, LlamaIndex, LangChain, Gemini, Vertex AI, AstraDB, Pinecone, FAISS, MongoDB, and more.
 
