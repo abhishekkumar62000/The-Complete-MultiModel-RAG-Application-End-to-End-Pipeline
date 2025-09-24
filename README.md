@@ -500,14 +500,20 @@ Milestones:
 
 ---
 
-## 👨‍🏫 About the Instructor
+## 👨‍💻 Developer Information  
 
-**Abhishek Kumar (Abhi)**
-💡 AI Engineer | Data Scientist | Educator | Builder of AI Agents
+**Created by Abhi Yadav**  
+📧 **Email:** abhiydv23096@gmail.com  
+🔗 **LinkedIn:** [Abhi Yadav](https://www.linkedin.com/in/your-linkedin-profile)  
+🐙 **GitHub Profile:** [@abhishekkumar62000](https://github.com/abhishekkumar62000)  
 
-* Known for making **complex AI concepts simple**
-* Passionate about **teaching students with practical examples**
-* Focus on **research + industry application**
+📸 **Developer Profile Image:**  
+
+<p align="center">
+  <img src="![pic](https://github.com/user-attachments/assets/6609592e-3198-488d-8b15-e33146f7d852)
+" alt="Abhi Yadav" width="200" height="200" style="border-radius:50%;">
+</p>
+
 
 ---
 
