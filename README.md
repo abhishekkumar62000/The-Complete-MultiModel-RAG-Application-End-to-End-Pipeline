@@ -287,8 +287,6 @@ gh repo create multimodal-rag-course --public
 git push -u origin main
 ```
 
-*(I can generate the exact `README.md` text and a commit message — paste it and push from your machine.)*
-
 ---
 
 ## ✍️ Suggested `README.md` summary for top of repo (one-line)
@@ -296,3 +294,220 @@ git push -u origin main
 `"The Complete MultiModal RAG — End-to-End GenAI Pipeline Course by Sunny — build multimodal RAG systems with LanceDB, LlamaIndex, LangChain, Vertex AI, and more."`
 
 ---
+
+# 🌳 Multimodal RAG Course — LangGraph & Tree Workflow
+
+This document provides three student-friendly views of the course: an **ASCII tree**, a **Mermaid graph** (renders on GitHub), and a runnable **LangGraph** syllabus navigator (Python) you can adapt. Drop these into your README or use the Python navigator as a lightweight CLI to guide learners.
+
+---
+
+## 1) High-level ASCII Tree
+
+```
+Multimodal RAG Course (Sunny / Abhi Yadav)
+│
+├── 00. Intro: What is Multimodal RAG?
+│
+├── 01. MultiModal RAG System INTRO
+│
+├── 02. LanceDB + LlamaIndex Multimodal App
+│
+├── 03. Realtime MultiModel RAG — Part 1 (Ingest)
+│
+├── 04. Realtime MultiModel RAG — Part 2 (Retrieval)
+│
+├── 05. Realtime MultiModel RAG — Part 3 (Orchestration)
+│
+├── 06. Gemini Pro Vision + LangChain (Vision + Text)
+│
+├── 07. Chat_With_Multiple_Doc (AstraDB + LangChain)
+│
+├── 08. Vertex AI + AstraDB + LangChain (Productionize)
+│
+└── Resources & Extras
+    ├── Interview Qs (100+ Word + PDFs)
+    ├── Course Banner (thumbnail image)
+    └── Project ideas + Templates
+```
+
+---
+
+## 2) Mermaid Tree (GitHub-ready)
+
+> Paste this block in your `README.md` where GitHub renders Mermaid.
+
+```mermaid
+flowchart TB
+  A[Multimodal RAG Course]:::root
+
+  A --> I00[00 • Intro]
+
+  A --> M01[01 • MultiModal RAG System INTRO]
+
+  A --> M02[02 • LanceDB + LlamaIndex]
+  M02 --> M02a[LanceDB ingestion]
+  M02 --> M02b[LlamaIndex indexing]
+  M02 --> M02c[Multimodal embeddings]
+
+  A --> R03[03 • Realtime RAG Part 1]
+  R03 --> R03a[Streaming producers]
+  R03 --> R03b[Chunking & Embeddings]
+
+  A --> R04[04 • Realtime RAG Part 2]
+  R04 --> R04a[Upserts & Freshness]
+  R04 --> R04b[Hybrid retrieval]
+
+  A --> R05[05 • Realtime RAG Part 3]
+  R05 --> R05a[Cross-encoder re-ranking]
+  R05 --> R05b[Low-latency LLM orchestration]
+
+  A --> G06[06 • Gemini Vision + LangChain]
+
+  A --> C07[07 • Chat with Multiple Docs (AstraDB)]
+
+  A --> P08[08 • Vertex AI + AstraDB + LangChain (Prod)]
+
+  A --> RES[Resources]
+  RES --> RES1[Interview Qs]
+  RES --> RES2[Course Banner]
+  RES --> RES3[Project Templates]
+
+  classDef root fill:#0b2545,stroke:#0b2545,color:#ffffff;
+```
+
+---
+
+## 3) Decision Tree — "When to choose which module"
+
+```mermaid
+flowchart TD
+  S([Start — What do you want?])
+  S -->|Learn fundamentals| M01
+  S -->|Build multimodal app| M02
+  S -->|Realtime / streaming| R03
+  S -->|Vision LLMs| G06
+  S -->|Deploy to prod| P08
+```
+
+---
+
+## 4) Runnable LangGraph Navigator (Python)
+
+> Copy this into a file `langgraph_nav.py`. It is a minimal, easy-to-extend syllabus runner. Requires a simple `StateGraph` utility; if you don't have LangGraph installed, use the logic as-is to implement your own CLI.
+
+```python
+# langgraph_nav.py
+from dataclasses import dataclass, field
+from typing import List, Dict
+
+@dataclass
+class CourseState:
+    node: str = "intro"
+    history: List[str] = field(default_factory=list)
+    resources: Dict[str, List[str]] = field(default_factory=dict)
+
+# Node handlers return updated state
+
+def node_intro(state: CourseState) -> CourseState:
+    state.history.append("00_intro")
+    state.resources['00_intro'] = [
+        'notes/00_intro.md',
+        'notebooks/00_overview.ipynb'
+    ]
+    return state
+
+def node_lancedb_llama(state: CourseState) -> CourseState:
+    state.history.append('02_lancedb_llama')
+    state.resources['02_lancedb_llama'] = [
+        'notebooks/01_lancedb_llamaindex.ipynb',
+        'datasets/multimodal_sample/'
+    ]
+    return state
+
+def node_realtime_part1(state: CourseState) -> CourseState:
+    state.history.append('03_realtime_p1')
+    state.resources['03_realtime_p1'] = [
+        'notebooks/02_realtime_ingest_part1.ipynb'
+    ]
+    return state
+
+# add other node functions similarly: part2, part3, gemini, astra, vertex
+
+# Simple router based on linear order but supports intent jumps
+ORDER = [
+    '00_intro', '01_system_intro', '02_lancedb_llama',
+    '03_realtime_p1', '04_realtime_p2', '05_realtime_p3',
+    '06_gemini_vision', '07_astradb_chat', '08_vertex_prod'
+]
+
+def next_node(state: CourseState, intent: str = None) -> str:
+    if intent == 'deploy':
+        return '08_vertex_prod'
+    if intent == 'realtime':
+        return '03_realtime_p1'
+    # default: next unvisited in ORDER
+    visited = set(state.history)
+    for q in ORDER:
+        if q not in visited:
+            return q
+    return 'END'
+
+# Minimal CLI runner
+if __name__ == '__main__':
+    state = CourseState()
+    # manual example run
+    while True:
+        nxt = next_node(state)
+        if nxt == 'END':
+            break
+        print('Navigating to:', nxt)
+        if nxt == '00_intro':
+            state = node_intro(state)
+        elif nxt == '02_lancedb_llama':
+            state = node_lancedb_llama(state)
+        elif nxt == '03_realtime_p1':
+            state = node_realtime_part1(state)
+        else:
+            # default append placeholder
+            state.history.append(nxt)
+            state.resources[nxt] = [f'notebooks/{nxt}.ipynb']
+
+    print('\nCourse path completed:')
+    print(state.history)
+    print('Resources keys:', list(state.resources.keys()))
+```
+
+**How to extend**
+
+* Replace `state.resources` values with real notebook paths and video links.
+* Add quiz nodes that branch on `score` (e.g., low score -> remedial nodes).
+* Persist `state.history` per learner in a JSON file for resuming.
+
+---
+
+## 5) Compact Milestone Map (Student View)
+
+```
+Milestones:
+1. Intro → 2. LanceDB+Index → 3. Realtime Ingest → 4. Realtime Retrieval → 5. Realtime Orchestration → 6. Gemini Vision → 7. Multi‑doc Chat → 8. Production Deploy
+```
+
+---
+
+## 6) Badges & Quick Links (Markdown)
+
+```
+![Course](https://img.shields.io/badge/Course-Multimodal%20RAG-blue)
+![Level](https://img.shields.io/badge/Level-Beginner%20to%20Advanced-orange)
+
+**Quick links**: [Notebooks](./notebooks) • [Datasets](./datasets) • [Videos](./videos)
+```
+
+---
+
+If you want, I can:
+
+* Export the Mermaid diagram to PNG/SVG for README preview.
+* Create a clickable HTML/Streamlit syllabus navigator from the LangGraph code.
+
+Made for: **Multimodal RAG — Sunny / Abhi Yadav**
