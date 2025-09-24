@@ -1,3 +1,6 @@
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/3fdedaaf-761f-4c93-ac06-06f29a3a6842" />
+
+
 
 ---
 
@@ -494,20 +497,5 @@ Milestones:
 
 ---
 
-## 6) Badges & Quick Links (Markdown)
-
-```
-![Course](https://img.shields.io/badge/Course-Multimodal%20RAG-blue)
-![Level](https://img.shields.io/badge/Level-Beginner%20to%20Advanced-orange)
-
-**Quick links**: [Notebooks](./notebooks) • [Datasets](./datasets) • [Videos](./videos)
-```
-
----
-
-If you want, I can:
-
-* Export the Mermaid diagram to PNG/SVG for README preview.
-* Create a clickable HTML/Streamlit syllabus navigator from the LangGraph code.
 
 Made for: **Multimodal RAG — Sunny / Abhi Yadav**
