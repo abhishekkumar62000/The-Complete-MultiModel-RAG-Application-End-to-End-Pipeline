@@ -510,9 +510,13 @@ Milestones:
 📸 **Developer Profile Image:**  
 
 <p align="center">
-  <img src="![pic](https://github.com/user-attachments/assets/6609592e-3198-488d-8b15-e33146f7d852)
-" alt="Abhi Yadav" width="200" height="200" style="border-radius:50%;">
+  <img src="https://github.com/user-attachments/assets/6609592e-3198-488d-8b15-e33146f7d852" 
+       alt="Abhi Yadav" 
+       width="200" 
+       height="200" 
+       style="border-radius:50%;">
 </p>
+
 
 
 ---
