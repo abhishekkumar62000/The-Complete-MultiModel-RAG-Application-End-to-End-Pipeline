@@ -498,4 +498,19 @@ Milestones:
 ---
 
 
-Made for: **Multimodal RAG — Sunny / Abhi Yadav**
+---
+
+## 👨‍🏫 About the Instructor
+
+**Abhishek Kumar (Abhi)**
+💡 AI Engineer | Data Scientist | Educator | Builder of AI Agents
+
+* Known for making **complex AI concepts simple**
+* Passionate about **teaching students with practical examples**
+* Focus on **research + industry application**
+
+---
+
+🔥 *This repository + video series is your one-stop place for mastering **RAG & MultiModel RAG LLM RAG Pineline Mastery***.
+
+---
